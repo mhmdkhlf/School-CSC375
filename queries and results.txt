@@ -1,0 +1,143 @@
+budgets increase
+----------------
+UPDATE CLUB
+SET
+    Budget  =  Budget * 1.2
+WHERE
+   Budget > 700;
+UPDATE CLUB
+SET
+    Budget  =  Budget * 1.5
+WHERE
+   300 < Budget  AND Budget <= 700;
+UPDATE CLUB
+SET
+    Budget  =  Budget * 2
+WHERE
+    Budget <= 300;​
+
+1	0.00	UPDATE CLUB SET Budget = Budget * 1.2 WHERE Budget	3 row(s) updated.	3
+2	0.01	UPDATE CLUB SET Budget = Budget * 1.5 WHERE 300 < B	3 row(s) updated.	3
+3	0.00	UPDATE CLUB SET Budget = Budget * 2 WHERE Budget <	4 row(s) updated.	4
+
+UPDATE CLUB 
+SET
+    Budget  =  Budget * 1.2
+WHERE
+   Budget > 700
+
+3 row(s) updated. 0.00 seconds
+UPDATE CLUB
+SET
+    Budget  =  Budget * 1.5
+WHERE
+   300 < Budget  AND Budget <= 700
+
+3 row(s) updated. 0.01 seconds
+UPDATE CLUB
+SET
+    Budget  =  Budget * 2
+WHERE
+    Budget <= 300
+
+4 row(s) updated. 0.00 seconds
+
+
+******************************************************************************************************
+
+n3atab el sabeh
+---------------
+SELECT GUARDIAN.Name, GUARDIAN.Email, GUARDIAN.Phone_Number, SPORTS_TEAM.Location_Of_Training
+FROM STUDENT, SPORTS_TEAM, PLAYS_WITH, GUARDIAN 
+WHERE STUDENT.First_Name = 'Charbel'
+    AND STUDENT.Last_Name = 'Naim' 
+    AND STUDENT.ID = PLAYS_WITH.Student_ID 
+    AND GUARDIAN.Student_ID = STUDENT.ID 
+    AND PLAYS_WITH.Sport_Team_ID = SPORTS_TEAM.TEAM_ID
+
+result:
+-------
+NAME	EMAIL	PHONE_NUMBER	LOCATION_OF_TRAINING
+Fadi Naim	fadi.naim@gmail.com	03134511	Basketball court
+
+
+*******************************************************************************************************
+
+club representatives
+---------------
+SELECT STUDENT.First_Name, STUDENT.Last_Name, STUDENT.Email, JOINS.Club_Name, JOINS.Role
+FROM STUDENT, JOINS
+WHERE STUDENT.ID=JOINS.Student_ID
+    AND (JOINS.Role='President' OR JOINS.Role='Vice President');
+
+result:
+-------
+FIRST_NAME    LAST_NAME    EMAIL    CLUB_NAME    ROLE
+Farah    Itani    farah.itani@army.edu    Physics Club    President
+Mohamad    Makknieh    mohamad.makknieh@army.edu    Science Club    Vice President
+Yara    Ghalayini    yara.ghalayini@army.edu    English Club    President
+Rana    Salman    rana.salman@army.edu    Music Club    Vice President
+
+
+
+*******************************************************************************************************
+
+office and contact information of instructor
+-------------------------------------
+SELECT EMPLOYEE.Email, EMPLOYEE.ID, EMPLOYEE.Phone_Number, OFFICE.Room_Number, OFFICE.Room_Building
+    FROM EMPLOYEE, OFFICE
+    WHERE EMPLOYEE.First_Name='Mazen' AND EMPLOYEE.Last_Name='Karake' AND EMPLOYEE.Role='Instructor'
+    AND EMPLOYEE.ID=OFFICE.Employee_ID
+
+result:
+-------
+EMAIL    ID    PHONE_NUMBER    ROOM_NUMBER    ROOM_BUILDING
+mazen.karake@army.edu    I202123    03326598    14    Kinderhaus
+
+
+
+*******************************************************************************************************
+
+get record of peoples that were in contact with a covid case
+------------------------------------------------------------
+--Saturday news broke out that student that has id#:S202110 has caught covid we need to retrieve the people that
+--he was in contact with during the whole week. We need to know what courses this student is enrolled and after
+--we need to get the contact information of this students classmates and instructors and urge them to take a pcr test.
+
+SELECT DISTINCT EMPLOYEE.First_Name, EMPLOYEE.Last_Name, EMPLOYEE.Email, EMPLOYEE.Phone_Number
+FROM EMPLOYEE, TEACHES
+WHERE EMPLOYEE.ID=TEACHES.Employee_ID
+    AND TEACHES.Course_CRN IN (SELECT ENROLLS_IN.Course_CRN
+                               FROM ENROLLS_IN
+                               WHERE ENROLLS_IN.Student_ID='S202110');
+
+
+SELECT DISTINCT STUDENT.First_Name, STUDENT.Last_Name, STUDENT.Email, STUDENT.Phone_Number
+FROM STUDENT, ENROLLS_IN
+WHERE STUDENT.ID=ENROLLS_IN.STUDENT_ID AND ENROLLS_IN.Student_ID!='S202110'
+    AND ENROLLS_IN.Course_CRN IN (SELECT ENROLLS_IN.Course_CRN
+                               FROM ENROLLS_IN
+                               WHERE ENROLLS_IN.Student_ID='S202110');​
+
+result:
+-------
+(instructors)
+FIRST_NAME	LAST_NAME	EMAIL	PHONE_NUMBER
+Elie	Wehbe	elie.wehbe@army.edu	03376772
+Fadi	Costa	fadi.costa@army.edu	70448559
+Mazen	Karake	mazen.karake@army.edu	03326598
+
+(students)
+FIRST_NAME	LAST_NAME	EMAIL	PHONE_NUMBER
+Charbel	Naim	charbel.naim@army.edu	76134511
+Roula	Attar	roula.attar@army.edu	03918120
+Ibrahim	Sleit	ibrahim.sleit@army.edu	03918115
+Tony	Zaiter	toni.zaiter@army.edu	78131211
+Rana	Harb	rana.harb@army.edu	76111222
+Salim	Hammoud	salim.hammoud@army.edu	03918111
+Yara	Ghalayini	yara.ghalayini@army.edu	03918116
+Rana	Salman	rana.salman@army.edu	03918118
+Omar	Shayah	omar.shayah@army.edu	70131211
+Mohamad	Makknieh	mohamad.makknieh@army.edu	03918113
+Farah	Itani	farah.itani@army.edu	03918112
+Elias	Yaghi	elias.yaghi@army.edu	76145611
