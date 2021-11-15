@@ -151,10 +151,12 @@ INSERT INTO COURSE_DAYS VALUES('10333','Monday');
 
 
 INSERT INTO EVENT VALUES('Math Contest', DATE'2021-10-22','Competition','Math Club');
+INSERT INTO EVENT VALUES('Math Contest', DATE'2021-10-22','Competition','Physics Club');
 INSERT INTO EVENT VALUES('Intro to Space',DATE'2021-5-14','Educational','Physics Club');
 INSERT INTO EVENT VALUES('Science Fair',DATE'2021-11-25','Educational','Science Club');
 INSERT INTO EVENT VALUES('Group Expirements',DATE'2021-12-25','Educational','Chemistry Club');
 INSERT INTO EVENT VALUES('Poerty Night',DATE'2021-12-14','Entertainment', 'Arabic Club');
+INSERT INTO EVENT VALUES('Poerty Night',DATE'2021-12-14','Entertainment', 'English Club');
 INSERT INTO EVENT VALUES('Group Reading',DATE'2021-9-19','Entertainment','English Club');
 INSERT INTO EVENT VALUES('Football tournament',  DATE'2022-1-10', 'Competition','Sports Club');
 INSERT INTO EVENT VALUES('Concert Night', DATE'2022-12-8', 'Entertainment', 'Music Club');
@@ -280,11 +282,17 @@ INSERT INTO TAKES_PLACE VALUES('10333',46,'OG');
 
 
 INSERT INTO JOINS VALUES('S202100','Math Club', 'President');
+INSERT INTO JOINS VALUES('S202102','Math Club', 'Member');
+INSERT INTO JOINS VALUES('S202103','Math Club', 'Member');
+INSERT INTO JOINS VALUES('S202108','Math Club', 'Member');
 INSERT INTO JOINS VALUES('S202114','Computer Club','President');
+INSERT INTO JOINS VALUES('S202107','Computer Club','Member');
 INSERT INTO JOINS VALUES('S202101','Physics Club','President');
+INSERT INTO JOINS VALUES('S202112','Physics Club','Member');
 INSERT INTO JOINS VALUES('S202102','Science Club','Vice President');
 INSERT INTO JOINS VALUES('S202110','Science Club','President');
 INSERT INTO JOINS VALUES('S202103','Chemistry Club','President');
+INSERT INTO JOINS VALUES('S202115','Chemistry Club','Member');
 INSERT INTO JOINS VALUES('S202104','Arabic Club','Member');
 INSERT INTO JOINS VALUES('S202111','Arabic Club','President');
 INSERT INTO JOINS VALUES('S202105','English Club','President');
@@ -294,6 +302,7 @@ INSERT INTO JOINS VALUES('S202112','Sports Club','President');
 INSERT INTO JOINS VALUES('S202107','Music Club','Vice President');
 INSERT INTO JOINS VALUES('S202113','Music Club','President');
 INSERT INTO JOINS VALUES('S202108','Animal Care Club','President');
+INSERT INTO JOINS VALUES('S202105','Animal Care Club','Member');
 INSERT INTO JOINS VALUES('S202109','Computer Club','Secretary');
 
 

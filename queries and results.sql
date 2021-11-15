@@ -49,8 +49,8 @@ WHERE STUDENT.First_Name = 'Charbel'
 /*
 result:
 -------
-NAME	EMAIL	PHONE_NUMBER	LOCATION_OF_TRAINING
-Fadi Naim	fadi.naim@gmail.com	03134511	Basketball court
+NAME	    EMAIL	            PHONE_NUMBER	LOCATION_OF_TRAINING
+Fadi Naim	fadi.naim@gmail.com	03134511	    Basketball court
 */
 ------------------------------------------------------------------------------------------------------
 
@@ -66,18 +66,18 @@ WHERE STUDENT.ID=JOINS.Student_ID
 /*
 result:
 -------
-FIRST_NAME	LAST_NAME	EMAIL				CLUB_NAME		ROLE
-Salim		Hammoud		salim.hammoud@army.edu		Math Club		President
+FIRST_NAME	LAST_NAME	EMAIL				        CLUB_NAME		    ROLE
+Salim		Hammoud		salim.hammoud@army.edu		Math Club		    President
 Farah		Itani		farah.itani@army.edu		Physics Club		President
 Mohamad		Makknieh	mohamad.makknieh@army.edu	Science Club		Vice President
-Sara		Harb		sara.harb@army.edu		Chemistry Club		President
+Sara		Harb		sara.harb@army.edu		    Chemistry Club		President
 Yara		Ghalayini	yara.ghalayini@army.edu		English Club		President
-Rana		Salman		rana.salman@army.edu		Music Club		Vice President
+Rana		Salman		rana.salman@army.edu		Music Club		    Vice President
 Assem		Farhat		assem.farhat@army.edu		Animal Care Club	President
-Roy		Solh		roy.solh@army.edu		Science Club		President
-Tony		Zaiter		toni.zaiter@army.edu		Arabic Club		President
-Charbel		Naim		charbel.naim@army.edu		Sports Club		President
-Elias		Yaghi		elias.yaghi@army.edu		Music Club		President
+Roy		    Solh		roy.solh@army.edu		    Science Club		President
+Tony		Zaiter		toni.zaiter@army.edu		Arabic Club		    President
+Charbel		Naim		charbel.naim@army.edu		Sports Club		    President
+Elias		Yaghi		elias.yaghi@army.edu		Music Club		    President
 Omar		Shayah		omar.shayah@army.edu		Computer Club		President
 */
 
@@ -94,8 +94,8 @@ SELECT EMPLOYEE.Email, EMPLOYEE.ID, EMPLOYEE.Phone_Number, OFFICE.Room_Number, O
 /*
 result:
 -------
-EMAIL    ID    PHONE_NUMBER    ROOM_NUMBER    ROOM_BUILDING
-mazen.karake@army.edu    I202123    03326598    14    Kinderhaus
+EMAIL                       ID     PHONE_NUMBER    ROOM_NUMBER    ROOM_BUILDING
+mazen.karake@army.edu    I202123    03326598         14         Kinderhaus
 */
 
 
@@ -241,10 +241,29 @@ WHERE UTILITY.State='Needs Repair'
      AND EXTRACT(YEAR FROM UTILITY.Date_Of_Purchase)+WARRANTY<2021
 
 /*
-SN	NAME
+SN	        NAME
 SF5S6FS6	Printer
 
-SN	NAME
+SN	        NAME
 FS56F78S	Calculator
 */
 
+----------------------------------------------------------------------------------
+
+/*
+get all participants that attend math contest event
+*/
+
+SELECT DISTINCT STUDENT.First_Name, STUDENT.Last_Name, STUDENT.ID, CLUB.Name
+FROM CLUB JOIN EVENT ON Name=Club_Name, STUDENT JOIN JOINS ON ID=Student_ID
+WHERE EVENT.Event_Name='Math Contest' AND EVENT.Club_Name=JOINS.Club_Name
+
+/*
+FIRST_NAME	LAST_NAME	ID	NAME
+Salim	Hammoud	S202100	Math Club
+Assem	Farhat	S202108	Math Club
+Mohamad	Makknieh	S202102	Math Club
+Sara	Harb	S202103	Math Club
+Farah	Itani	S202101	Physics Club
+Charbel	Naim	S202112	Physics Club
+*/
