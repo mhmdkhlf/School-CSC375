@@ -39,7 +39,7 @@ WHERE STUDENT.First_Name = 'Charbel'
     AND STUDENT.Last_Name = 'Naim'
     AND STUDENT.ID = PLAYS_WITH.Student_ID
     AND GUARDIAN.Student_ID = STUDENT.ID
-    AND PLAYS_WITH.Sport_Team_ID = SPORTS_TEAM.TEAM_ID
+    AND PLAYS_WITH.Sport_Team_ID = SPORTS_TEAM.TEAM_ID;
 /*
 result:
 -------
@@ -83,7 +83,7 @@ office and contact information of instructor
 SELECT EMPLOYEE.Email, EMPLOYEE.ID, EMPLOYEE.Phone_Number, OFFICE.Room_Number, OFFICE.Room_Building
     FROM EMPLOYEE, OFFICE
     WHERE EMPLOYEE.First_Name='Mazen' AND EMPLOYEE.Last_Name='Karake' AND EMPLOYEE.Role='Instructor'
-    AND EMPLOYEE.ID=OFFICE.Employee_ID
+    AND EMPLOYEE.ID=OFFICE.Employee_ID;
 
 /*
 result:
@@ -115,7 +115,7 @@ FROM STUDENT, ENROLLS_IN
 WHERE STUDENT.ID=ENROLLS_IN.STUDENT_ID AND ENROLLS_IN.Student_ID!='S202110'
     AND ENROLLS_IN.Course_CRN IN (SELECT ENROLLS_IN.Course_CRN
                                FROM ENROLLS_IN
-                               WHERE ENROLLS_IN.Student_ID='S202110');​
+                               WHERE ENROLLS_IN.Student_ID='S202110');
 /*
 result:
 -------
@@ -174,7 +174,7 @@ FROM STUDENT, Student_CourseCount
 WHERE STUDENT.ID=Student_CourseCount.ID AND Student_CourseCount.Nb_Of_Courses>=3;
 
 DROP TABLE Student_CourseCount;
-​
+
 /*
 results
 -------
@@ -200,7 +200,7 @@ third party bus company
 SELECT STUDENT.First_Name, STUDENT.Last_Name, STUDENT.Email, STUDENT.Phone_Number, STUDENT.City
 FROM STUDENT
 WHERE (STUDENT.Bus_Taken IS NULL)
-     AND (STUDENT.City!='Beirut' AND STUDENT.City!='Byblos')
+     AND (STUDENT.City!='Beirut' AND STUDENT.City!='Byblos');
 
 /*
 results
@@ -227,12 +227,12 @@ utilities to fix or to replace
 SELECT UTILITY.SN, UTILITY.Name
 FROM UTILITY
 WHERE UTILITY.State='Needs Repair'
-     AND EXTRACT(YEAR FROM UTILITY.Date_Of_Purchase)+WARRANTY>=2021
+     AND EXTRACT(YEAR FROM UTILITY.Date_Of_Purchase)+WARRANTY>=2021;
 
 SELECT UTILITY.SN, UTILITY.Name
 FROM UTILITY
 WHERE UTILITY.State='Needs Repair'
-     AND EXTRACT(YEAR FROM UTILITY.Date_Of_Purchase)+WARRANTY<2021
+     AND EXTRACT(YEAR FROM UTILITY.Date_Of_Purchase)+WARRANTY<2021;
 
 /*
 SN	        NAME
@@ -250,7 +250,7 @@ get all participants that attend math contest event
 
 SELECT DISTINCT STUDENT.First_Name, STUDENT.Last_Name, STUDENT.ID, CLUB.Name
 FROM CLUB JOIN EVENT ON Name=Club_Name, STUDENT JOIN JOINS ON ID=Student_ID
-WHERE EVENT.Event_Name='Math Contest' AND EVENT.Club_Name=JOINS.Club_Name
+WHERE EVENT.Event_Name='Math Contest' AND EVENT.Club_Name=JOINS.Club_Name;
 
 /*
 FIRST_NAME	LAST_NAME	ID	NAME
