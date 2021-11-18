@@ -2,29 +2,14 @@
 ----------------
 */
 UPDATE CLUB
-SET
-    Budget  =  Budget * 1.2
-WHERE
-   Budget > 700;
-UPDATE CLUB
-SET
-    Budget  =  Budget * 1.5
-WHERE
-   300 < Budget  AND Budget <= 700;
-UPDATE CLUB
-SET
-    Budget  =  Budget * 2
-WHERE
-    Budget <= 300;
+SET Budget =
+CASE   WHEN Budget > 700 THEN Budget * 1.2
+       WHEN (300 < Budget AND Budget <= 700) THEN Budget * 1.5
+       WHEN 300 >= Budget THEN Budget * 2
+END;
 
 /*
-3 row(s) updated. 0.00 seconds
-______________________________
-
-3 row(s) updated. 0.00 seconds
-______________________________
-
-4 row(s) updated. 0.01 seconds
+10 row(s) updated. 0.02 seconds
 */
 
 ------------------------------------------------------------------------------------------------------
